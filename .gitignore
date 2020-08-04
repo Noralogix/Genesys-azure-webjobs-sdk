@@ -3,3 +3,5 @@
 ################################################################################
 
 /.vs
+/src/Genesys.Azure.WebJobs.Extensions/obj
+/src/Genesys.Azure.WebJobs.Extensions/bin/Debug
