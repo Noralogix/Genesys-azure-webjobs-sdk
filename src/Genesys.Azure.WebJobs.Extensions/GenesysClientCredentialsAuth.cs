@@ -12,7 +12,7 @@ namespace Genesys.Azure.WebJobs.Extensions
 {
     public static class GenesysClientCredentialsAuth
     {
-        internal static async Task<GenesysAuthTokenInfo> GetTokenAsync(this HttpClient httpClient, IGenesysClientCredentials clientCredentials)
+        public static async Task<GenesysAuthTokenInfo> GetTokenAsync(this HttpClient httpClient, IGenesysClientCredentials clientCredentials)
         {
             var path = "/oauth/token";
 
@@ -26,11 +26,23 @@ namespace Genesys.Azure.WebJobs.Extensions
             });
             request.Content = content;
             var response = await httpClient.SendAsync(request);
-            response.EnsureSuccessStatusCode();
 
-            var responseContent = await response.Content.ReadAsStringAsync();
-            var authTokenInfo = JsonSerializer.Deserialize<GenesysAuthTokenInfo>(responseContent);
-            return authTokenInfo;
+            try
+            {
+                response.EnsureSuccessStatusCode();
+                var responseContent = await response.Content.ReadAsStringAsync();
+                var authTokenInfo = JsonSerializer.Deserialize<GenesysAuthTokenInfo>(responseContent);
+                return authTokenInfo;
+            }
+            catch (HttpRequestException ex)
+            {
+                int statusCode = (int)response.StatusCode;
+                throw new GenesysExtensionsException($"Error calling Genesys API PostToken. Status Code {statusCode}. " + ex.Message);
+            }
+            catch (Exception ex)
+            {
+                throw new GenesysExtensionsException($"GetTokenAsync error. " + ex.Message);
+            }
         }
     }
 }

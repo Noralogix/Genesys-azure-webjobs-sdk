@@ -5,7 +5,7 @@ using System;
 
 namespace Genesys.Azure.WebJobs.Extensions
 {
-    public class GenesysAccessToken : TableEntity, IGenesysAccessToken
+    internal class GenesysAccessToken : TableEntity, IGenesysAccessToken
     {
         public string Value { get; set; }
         public DateTime ExpiresIn { get; set; }
@@ -23,5 +23,6 @@ namespace Genesys.Azure.WebJobs.Extensions
     public interface IGenesysAccessToken
     {
         string Value { get; }
+        DateTime ExpiresIn { get; }
     }
 }

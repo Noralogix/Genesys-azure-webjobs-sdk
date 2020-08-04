@@ -5,3 +5,5 @@
 /.vs
 /src/Genesys.Azure.WebJobs.Extensions/obj
 /src/Genesys.Azure.WebJobs.Extensions/bin/Debug
+/src/Genesys.Azure.WebJobs.Extensions.Tests/bin/Debug/netcoreapp3.1
+/src/Genesys.Azure.WebJobs.Extensions.Tests/obj

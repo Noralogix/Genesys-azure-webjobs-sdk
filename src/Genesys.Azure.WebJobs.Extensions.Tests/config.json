@@ -1,0 +1,10 @@
+{
+  "Genesys": {
+    "Name": "Genesys",
+    "ClientId": "",
+    "ClientSecret": "",
+    "Environment": "mypurecloud.ie",
+    "OrgId": "NoraTestId"
+  },
+  "AzureConnection": "UseDevelopmentStorage=true"
+}

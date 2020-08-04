@@ -1,0 +1,8 @@
+{
+  "Genesys": {
+    "ClientId": "",
+    "ClientSecret": "",
+    "Environment": "mypurecloud.ie",
+    "OrgId": "NoraTestId"
+  }
+}

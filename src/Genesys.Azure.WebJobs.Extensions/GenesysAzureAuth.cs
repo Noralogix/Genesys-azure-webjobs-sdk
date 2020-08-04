@@ -30,15 +30,9 @@ namespace Genesys.Azure.WebJobs.Extensions
                 }
             }
             GenesysAuthTokenInfo authTokenInfo = null;
-            try
-            {
+            
                 authTokenInfo = await apiClient.GetTokenAsync(clientCredentials);
-            }
-            catch (Exception ex)
-            {
-                throw new GenesysExtensionsException($"Genesys API token error. ClientId '{clientCredentials.ClientId}'", ex);
-            }
-
+     
             if (authTokenInfo == null)
             {
                 throw new GenesysExtensionsException($"Genesys API Token is null. ClientId '{clientCredentials.ClientId}'.");

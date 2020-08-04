@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace Genesys.Azure.WebJobs.Extensions
 {
-    internal static class GenesysAccessTokenTable
+    internal static class GenesysAzureTable
     {
-        public static async Task<GenesysAccessToken> GetAuthTokenAsync(this CloudTable cloudTable, IGenesysClientCredentials settings)
+        public static async Task<IGenesysAccessToken> GetAuthTokenAsync(this CloudTable cloudTable, IGenesysClientCredentials settings)
         {
             var q = new TableQuery<GenesysAccessToken>()
                 .Where(TableQuery.CombineFilters(TableQuery.GenerateFilterCondition("PartitionKey", QueryComparisons.Equal, settings.GetOrgId()),
