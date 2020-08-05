@@ -1,10 +1,26 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿  <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <Company>Noralogix</Company>
+    <Authors>Noralogix</Authors>
+
+    <RepositoryUrl>https://github.com/Noralogix/Genesys-azure-webjobs-sdk</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <Copyright>© Noralogix. All rights reserved.</Copyright>
+    
+    <PackageId>Genesys.Azure.WebJobs.Extensions</PackageId>
+    <PackageTags>Azure AzureFunctions Genesys Purecloud Noralogix</PackageTags>
+    
+    <Version>1.0.0</Version>
     <Authors>Taras Buha</Authors>
-    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+    <Description>This library simplifies the task of creating Genesys Access Token for Genesys SDK.</Description>
+    <IsPackable>true</IsPackable>
+    <SignAssembly>true</SignAssembly>
+    <DelaySign>true</DelaySign>
+    
+    <AssemblyOriginatorKeyFile>publickKey.pfx</AssemblyOriginatorKeyFile>
+    
   </PropertyGroup>
 
   <ItemGroup>
