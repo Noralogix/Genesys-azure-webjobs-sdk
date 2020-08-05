@@ -9,5 +9,7 @@ namespace Genesys.Azure.WebJobs.Extensions
     [Binding]
     public class GenesysAttribute : Attribute
     {
+        public string TokenTableName { get; set; }
+        public string Connection { get; set; }
     }
 }

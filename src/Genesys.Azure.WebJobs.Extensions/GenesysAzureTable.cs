@@ -8,6 +8,15 @@ namespace Genesys.Azure.WebJobs.Extensions
 {
     internal static class GenesysAzureTable
     {
+        public static async Task<CloudTable> GetTableAsync(string connectionString, string name)
+        {
+            var tableStorage = CloudStorageAccount.Parse(connectionString);
+            var tableClient = tableStorage.CreateCloudTableClient();
+            var table = tableClient.GetTableReference(name);
+            await table.CreateAsync();
+            return table;
+        }
+
         public static async Task<IGenesysAccessToken> GetAuthTokenAsync(this CloudTable cloudTable, IGenesysClientCredentials settings)
         {
             var q = new TableQuery<GenesysAccessToken>()
