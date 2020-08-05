@@ -1,0 +1,11 @@
+{
+  "IsEncrypted": false,
+  "Values": {
+    "AzureWebJobsStorage": "UseDevelopmentStorage=true",
+    "FUNCTIONS_WORKER_RUNTIME": "dotnet",
+    "GenesysClientId": "b656549d-8e1b-48ac-bd49-93a97aa955af",
+    "GenesysClientSecret": "pe7ne9SqBpPEl5AHfUnmnTajieMmAw9OUs4EmG6j_8Y",
+    "GenesysEnvironment": "mypurecloud.ie",
+    "GenesysOrgId": "NoraTestId"
+  }
+}
