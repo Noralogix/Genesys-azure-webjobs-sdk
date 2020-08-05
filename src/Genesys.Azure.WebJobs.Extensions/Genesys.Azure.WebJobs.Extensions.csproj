@@ -19,7 +19,7 @@
     <!--<SignAssembly>false</SignAssembly>
     <DelaySign>true</DelaySign>-->
     
-    <AssemblyOriginatorKeyFile>publickKey.pfx</AssemblyOriginatorKeyFile>
+    <!--<AssemblyOriginatorKeyFile>publickKey.pfx</AssemblyOriginatorKeyFile>-->
     
   </PropertyGroup>
 
