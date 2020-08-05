@@ -6,6 +6,6 @@
     "GenesysClientId": "",
     "GenesysClientSecret": "",
     "GenesysEnvironment": "mypurecloud.ie",
-    "GenesysOrgId": "NoraTestId"
+    "GenesysOrgId": ""
   }
 }
