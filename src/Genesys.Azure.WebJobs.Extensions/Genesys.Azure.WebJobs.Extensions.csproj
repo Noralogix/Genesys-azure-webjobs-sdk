@@ -16,8 +16,8 @@
     <Authors>Taras Buha</Authors>
     <Description>This library simplifies the task of creating Genesys Access Token for Genesys SDK.</Description>
     <IsPackable>true</IsPackable>
-    <SignAssembly>true</SignAssembly>
-    <DelaySign>true</DelaySign>
+    <!--<SignAssembly>false</SignAssembly>
+    <DelaySign>true</DelaySign>-->
     
     <AssemblyOriginatorKeyFile>publickKey.pfx</AssemblyOriginatorKeyFile>
     
