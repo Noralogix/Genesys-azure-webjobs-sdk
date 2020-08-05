@@ -18,6 +18,7 @@ namespace Genesys.Azure.WebJobs.Extensions
         private readonly GenesysTokenContext _tokenContext;
 
         private GenesysTokenProvider _tokenProvider;
+        public bool FromAttribute => true;
 
         public GenesysAttributeBinding(string name, Type type, GenesysTokenProvider tokenProvider, GenesysTokenContext tokenContext)
         {
@@ -25,9 +26,7 @@ namespace Genesys.Azure.WebJobs.Extensions
             _parameterType = type;
             _tokenProvider = tokenProvider;
             _tokenContext = tokenContext;
-        }
-
-        public bool FromAttribute => throw new NotImplementedException();
+        }        
 
         public Task<IValueProvider> BindAsync(object value, ValueBindingContext context)
             => Task.FromResult((IValueProvider)new GenesysAttributeValueBinder(value));
@@ -35,7 +34,7 @@ namespace Genesys.Azure.WebJobs.Extensions
         public async Task<IValueProvider> BindAsync(BindingContext context)
         {
             var token = await _tokenProvider.GetTokenAsync(DateTime.UtcNow, _tokenContext);
-            if (_parameterType.IsString()) return new GenesysAttributeValueBinder(token.Value);
+            if (_parameterType == typeof(string)) return new GenesysAttributeValueBinder(token.Value);
             else return new GenesysAttributeValueBinder(token);
         }
 

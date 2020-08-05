@@ -9,7 +9,7 @@ namespace Genesys.Azure.WebJobs.Extensions
     {
         public string Value { get; set; }
         public DateTime ExpiresIn { get; set; }
-
+        [IgnoreProperty] public string Environment { get; set; }
         public GenesysAccessToken()
         {
         }
@@ -24,5 +24,6 @@ namespace Genesys.Azure.WebJobs.Extensions
     {
         string Value { get; }
         DateTime ExpiresIn { get; }
+        string Environment{ get; }
     }
 }

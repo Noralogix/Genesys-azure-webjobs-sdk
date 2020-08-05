@@ -21,7 +21,15 @@ namespace Genesys.Azure.WebJobs.Extensions
 
         public virtual Task<IGenesysClientCredentials> GetClientCredentialsAsync()
         {
-            IGenesysClientCredentials credentials = _configuration.GetSection(GenesysConfigNames.CredentialsSection).Get<GenesysClientCredentials>();
+            IGenesysClientCredentials credentials = new GenesysClientCredentials
+            {
+                ClientId = _configuration[GenesysConfigNames.ClientId],
+                ClientSecret = _configuration[GenesysConfigNames.ClientSecret],
+                Environment = _configuration[GenesysConfigNames.Environment],
+                OrgId = _configuration[GenesysConfigNames.OrgId],
+            };
+            //_configuration.GetSection(GenesysConfigNames.CredentialsSection).Get<GenesysClientCredentials>();
+
             return Task.FromResult(credentials);
         }
 

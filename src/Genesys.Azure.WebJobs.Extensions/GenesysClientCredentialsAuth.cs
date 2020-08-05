@@ -1,6 +1,6 @@
 ﻿//MIT License
 //Copyright(c) 2020 Noralogix
-using System.Text.Json;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
@@ -31,7 +31,7 @@ namespace Genesys.Azure.WebJobs.Extensions
             {
                 response.EnsureSuccessStatusCode();
                 var responseContent = await response.Content.ReadAsStringAsync();
-                var authTokenInfo = JsonSerializer.Deserialize<GenesysAuthTokenInfo>(responseContent);
+                var authTokenInfo = JsonConvert.DeserializeObject<GenesysAuthTokenInfo>(responseContent);
                 return authTokenInfo;
             }
             catch (HttpRequestException ex)

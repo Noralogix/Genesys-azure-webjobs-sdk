@@ -21,6 +21,7 @@ namespace Genesys.Azure.WebJobs.Extensions
                     var existedToken = await cloudTable.GetAuthTokenAsync(clientCredentials);
                     if (existedToken?.ExpiresIn > date)
                     {
+                        existedToken.Environment = clientCredentials.Environment;
                         return existedToken;
                     }
                 }
@@ -50,6 +51,7 @@ namespace Genesys.Azure.WebJobs.Extensions
             };
 
             await cloudTable.SetAuthTokenAsync(newToken);
+            newToken.Environment = clientCredentials.Environment;
             return newToken;
         }
     }

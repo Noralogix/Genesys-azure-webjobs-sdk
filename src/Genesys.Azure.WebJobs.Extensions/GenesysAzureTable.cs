@@ -17,7 +17,7 @@ namespace Genesys.Azure.WebJobs.Extensions
             return table;
         }
 
-        public static async Task<IGenesysAccessToken> GetAuthTokenAsync(this CloudTable cloudTable, IGenesysClientCredentials settings)
+        public static async Task<GenesysAccessToken> GetAuthTokenAsync(this CloudTable cloudTable, IGenesysClientCredentials settings)
         {
             var q = new TableQuery<GenesysAccessToken>()
                 .Where(TableQuery.CombineFilters(TableQuery.GenerateFilterCondition("PartitionKey", QueryComparisons.Equal, settings.GetOrgId()),

@@ -7,6 +7,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Genesys.Azure.WebJobs.Exten
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Genesys.Azure.WebJobs.Extensions.Tests", "src\Genesys.Azure.WebJobs.Extensions.Tests\Genesys.Azure.WebJobs.Extensions.Tests.csproj", "{4E5DBE6A-FE71-418F-81D9-5E527769500C}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Sample", "Sample", "{94777F05-0CD5-432B-A7C6-0C4C8B3078C8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SampleFunctionApp", "sample\SampleFunctionApp\SampleFunctionApp.csproj", "{1FEDEAA2-F016-4FF4-9EBB-E1FB98613118}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,9 +25,16 @@ Global
 		{4E5DBE6A-FE71-418F-81D9-5E527769500C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4E5DBE6A-FE71-418F-81D9-5E527769500C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4E5DBE6A-FE71-418F-81D9-5E527769500C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1FEDEAA2-F016-4FF4-9EBB-E1FB98613118}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1FEDEAA2-F016-4FF4-9EBB-E1FB98613118}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1FEDEAA2-F016-4FF4-9EBB-E1FB98613118}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1FEDEAA2-F016-4FF4-9EBB-E1FB98613118}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{1FEDEAA2-F016-4FF4-9EBB-E1FB98613118} = {94777F05-0CD5-432B-A7C6-0C4C8B3078C8}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A820EF29-60B9-42DB-A701-A6A30F5BA0CB}

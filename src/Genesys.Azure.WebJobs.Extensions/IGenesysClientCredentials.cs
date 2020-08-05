@@ -4,10 +4,10 @@ namespace Genesys.Azure.WebJobs.Extensions
 {
     public interface IGenesysClientCredentials
     {
-        public string OrgId { get; }
-        public string ClientId { get; }
-        public string ClientSecret { get; }
-        public string Environment { get; }
+        string OrgId { get; }
+        string ClientId { get; }
+        string ClientSecret { get; }
+        string Environment { get; }
     }
 
     internal static class GenesysClientCredentialsExt

@@ -28,6 +28,8 @@ namespace Genesys.Azure.WebJobs.Extensions
         public async Task<IBinding> TryCreateAsync(BindingProviderContext context)
         {
             var parameter = context.Parameter;
+            var parameterName = context.Parameter.Name;
+            var parameterType = context.Parameter.ParameterType;
 
             var attribute = parameter.GetCustomAttribute<GenesysAttribute>();
             if (attribute == null)
@@ -35,9 +37,9 @@ namespace Genesys.Azure.WebJobs.Extensions
                 return null;
             }
 
-            if (!context.Parameter.ParameterType.IsString() && context.Parameter.ParameterType != typeof(IGenesysAccessToken))
+            if (parameterType != typeof(string) && parameterType != typeof(IGenesysAccessToken))
             {
-                throw new InvalidOperationException("Can't bind entity to type '" + parameter.ParameterType + "'.");
+                throw new InvalidOperationException("Can't bind entity to type '" + parameterType + "'.");
             }
 
             var connectionString = GetConnectionString(attribute.Connection);
@@ -54,7 +56,7 @@ namespace Genesys.Azure.WebJobs.Extensions
                 TokenTable = table
             };
 
-            IBinding binding = new GenesysAttributeBinding(context.Parameter.Name, context.Parameter.ParameterType, _tokenProvider, tokenCtx);
+            IBinding binding = new GenesysAttributeBinding(parameterName, parameterType, _tokenProvider, tokenCtx);
             return binding;
         }
 
