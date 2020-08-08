@@ -8,6 +8,9 @@ namespace Genesys.Azure.WebJobs.Extensions
 {
     public class GenesysTokenContext
     {
+        public string Environment { get; set; }
+        public string ClientId { get; set; }
+        public string ClientSecret { get; set; }
         public CloudTable TokenTable { get; set; }
     }
 
@@ -19,13 +22,13 @@ namespace Genesys.Azure.WebJobs.Extensions
             _configuration = configuration;
         }
 
-        public virtual Task<IGenesysClientCredentials> GetClientCredentialsAsync()
+        public virtual Task<IGenesysClientCredentials> GetClientCredentialsAsync(GenesysTokenContext tokenContext)
         {
             IGenesysClientCredentials credentials = new GenesysClientCredentials
             {
-                ClientId = _configuration[GenesysConfigNames.ClientId],
-                ClientSecret = _configuration[GenesysConfigNames.ClientSecret],
-                Environment = _configuration[GenesysConfigNames.Environment],
+                ClientId = _configuration[tokenContext.ClientId ?? GenesysConfigNames.ClientId],
+                ClientSecret = _configuration[tokenContext.ClientSecret ?? GenesysConfigNames.ClientSecret],
+                Environment = _configuration[tokenContext.Environment ?? GenesysConfigNames.Environment],
                 OrgId = _configuration[GenesysConfigNames.OrgId],
             };
             //_configuration.GetSection(GenesysConfigNames.CredentialsSection).Get<GenesysClientCredentials>();
@@ -33,11 +36,21 @@ namespace Genesys.Azure.WebJobs.Extensions
             return Task.FromResult(credentials);
         }
 
-        public async Task<IGenesysAccessToken> GetTokenAsync(DateTime date, GenesysTokenContext tokenContext)
+        public virtual async Task<IGenesysAccessToken> GetTokenAsync(DateTime date, GenesysTokenContext tokenContext)
         {
+            var credentials = await GetClientCredentialsAsync(tokenContext);
+
+            if (credentials == null)
+                throw new ArgumentNullException("Cant get Genesys Token with nullable client credentials.");
+            if (string.IsNullOrEmpty(credentials.ClientId))
+                throw new ArgumentException("Genesys ClientId is not defined.");
+            if (string.IsNullOrEmpty(credentials.ClientSecret))
+                throw new ArgumentException("Genesys ClientSecret is not defined.");
+            if (string.IsNullOrEmpty(credentials.Environment))
+                throw new ArgumentException("Genesys Environment is not defined.");
+
             using (var client = new HttpClient())
             {
-                var credentials = await GetClientCredentialsAsync();
                 var token = await tokenContext.TokenTable.GetAuthTokenAsync(client, date, credentials);
                 return token;
             }

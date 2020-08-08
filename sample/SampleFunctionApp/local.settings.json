@@ -3,9 +3,16 @@
   "Values": {
     "AzureWebJobsStorage": "UseDevelopmentStorage=true",
     "FUNCTIONS_WORKER_RUNTIME": "dotnet",
+    
     "GenesysClientId": "",
     "GenesysClientSecret": "",
     "GenesysEnvironment": "mypurecloud.ie",
-    "GenesysOrgId": ""
+
+    //For Azure Token Table partition key, otherwise partition key value will be empty string
+    "GenesysOrgId": "",
+
+    "ClientId": "",
+    "ClientSecret": "",
+    "Environment": "mypurecloud.ie"
   }
 }

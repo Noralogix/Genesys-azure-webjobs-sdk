@@ -1,7 +1,6 @@
 ﻿//MIT License
 //Copyright(c) 2020 Noralogix
 using Microsoft.Azure.Cosmos.Table;
-using Microsoft.Azure.Documents.SystemFunctions;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Host.Bindings;
 using Microsoft.Extensions.Configuration;
@@ -49,11 +48,14 @@ namespace Genesys.Azure.WebJobs.Extensions
             }
 
             var tableClient = tableStorageAccount.CreateCloudTableClient();
-            var table = tableClient.GetTableReference(attribute.TokenTableName ?? GenesysConfigNames.GenesysTokensTable);
+            var table = tableClient.GetTableReference(attribute.TokenTable ?? GenesysConfigNames.GenesysTokensTable);
             await table.CreateIfNotExistsAsync();
             var tokenCtx = new GenesysTokenContext
             {
-                TokenTable = table
+                TokenTable = table,
+                ClientId = attribute.ClientId,
+                ClientSecret = attribute.ClientSecret,
+                Environment = attribute.Environment,
             };
 
             IBinding binding = new GenesysAttributeBinding(parameterName, parameterType, _tokenProvider, tokenCtx);
@@ -61,6 +63,5 @@ namespace Genesys.Azure.WebJobs.Extensions
         }
 
         private string GetConnectionString(string name) => _configuration.GetWebJobsConnectionString(_nameResolver.Resolve(name) ?? ConnectionStringNames.Storage);
-
     }
 }

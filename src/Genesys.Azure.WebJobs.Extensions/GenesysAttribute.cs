@@ -9,7 +9,25 @@ namespace Genesys.Azure.WebJobs.Extensions
     [Binding]
     public class GenesysAttribute : Attribute
     {
-        public string TokenTableName { get; set; }
+        /// <summary>
+        /// Get or sets Genesys TokenTable where tokens will be cached.
+        /// </summary>
+        public string TokenTable { get; set; }
+        /// <summary>
+        /// Gets or sets the app setting name that contains the Azure Storage connection string.
+        /// </summary>
         public string Connection { get; set; }
+        /// <summary>
+        /// Gets or sets the app setting name that contains the Genesys ClientId value.
+        /// </summary>
+        public string ClientId { get; set; }
+        /// <summary>
+        /// Gets or sets the app setting name that contains the Genesys ClientSecret value.
+        /// </summary>
+        public string ClientSecret { get; set; }
+        /// <summary>
+        /// Gets or sets the app setting name that contains the Genesys Environment value.
+        /// </summary>
+        public string Environment { get; set; }
     }
 }

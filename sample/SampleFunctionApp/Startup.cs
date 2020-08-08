@@ -10,8 +10,8 @@ namespace SampleFunctionApp
     {
         public void Configure(IWebJobsBuilder builder)
         {
-            builder.Services.AddSingleton<GenesysTokenProvider>();
-            builder.Services.AddSingleton<GenesysAttributeBindingProvider>();
+            //builder.Services.AddSingleton<GenesysTokenProvider>();
+            //builder.AddExtension<GenesysAttributeCustomConfigProvider>();
             builder.AddExtension<GenesysAttributeConfigProvider>();
         }
     }
