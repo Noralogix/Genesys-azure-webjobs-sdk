@@ -11,13 +11,14 @@
     <PackageId>Genesys.Azure.WebJobs.Extensions</PackageId>
     <PackageTags>Azure Genesys Purecloud AzureFunctions</PackageTags>
     
-    <Version>1.0.0</Version>
+    <Version>1.0.1</Version>
     <Authors>Noralogix</Authors>
     <Description>This library simplifies the task of creating Genesys Access Token for Genesys SDK in Azure Functions.</Description>
     <IsPackable>true</IsPackable>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <NeutralLanguage>en</NeutralLanguage>
+    <PackageIcon>noralogix.png</PackageIcon>
     <!--<SignAssembly>false</SignAssembly>
     <DelaySign>true</DelaySign>-->
     
@@ -28,6 +29,13 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.Azure.Cosmos.Table" Version="1.0.7" />
     <PackageReference Include="Microsoft.Azure.WebJobs" Version="3.0.16" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\..\imgs\noralogix.png">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
   </ItemGroup>
 
 </Project>

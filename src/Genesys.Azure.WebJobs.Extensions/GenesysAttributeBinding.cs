@@ -33,7 +33,7 @@ namespace Genesys.Azure.WebJobs.Extensions
 
         public async Task<IValueProvider> BindAsync(BindingContext context)
         {
-            var token = await _tokenProvider.GetTokenAsync(DateTime.UtcNow, _tokenContext);
+            var token = await _tokenProvider.GetTokenAsync(DateTime.UtcNow, _tokenContext, context.BindingData);
             if (_parameterType == typeof(string)) return new GenesysAttributeValueBinder(token.Value);
             else return new GenesysAttributeValueBinder(token);
         }

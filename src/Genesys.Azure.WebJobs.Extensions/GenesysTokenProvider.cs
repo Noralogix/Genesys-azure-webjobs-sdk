@@ -1,6 +1,7 @@
 ﻿using Microsoft.Azure.Cosmos.Table;
 using Microsoft.Extensions.Configuration;
 using System;
+using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
 
@@ -36,7 +37,9 @@ namespace Genesys.Azure.WebJobs.Extensions
             return Task.FromResult(credentials);
         }
 
-        public virtual async Task<IGenesysAccessToken> GetTokenAsync(DateTime date, GenesysTokenContext tokenContext)
+        public virtual async Task<IGenesysAccessToken> GetTokenAsync(DateTime date
+            , GenesysTokenContext tokenContext
+            , IReadOnlyDictionary<string, object> webjobBindingData)
         {
             var credentials = await GetClientCredentialsAsync(tokenContext);
 

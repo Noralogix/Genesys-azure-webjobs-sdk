@@ -25,16 +25,7 @@ namespace SampleFunctionApp
             Organization org = await GetOrgAsync(token.Value, token.Environment);
             return new OkObjectResult(org);
         }
-
-        private static async Task<Organization> GetOrgAsync(string token, string environment)
-        {
-            var apiClient = new ApiClient($"https://api.{environment}");
-            var configuration = new Configuration(apiClient);
-            configuration.AccessToken = token;
-            var orgApi = new OrganizationApi(configuration);
-            var org = await orgApi.GetOrganizationsMeAsync();
-            return org;
-        }
+        ...
     }
 }
 ```
@@ -53,14 +44,12 @@ namespace SampleFunctionApp
     {
         public void Configure(IWebJobsBuilder builder)
         {
-            builder.Services.AddSingleton<GenesysTokenProvider>();
-            builder.Services.AddSingleton<GenesysAttributeBindingProvider>();
             builder.AddExtension<GenesysAttributeConfigProvider>();
         }
     }
 }
 ```
-Azure Function Config file:
+Azure Function Config file. GenesysOrgId For Azure Token Table partition key, otherwise partition key value will be empty string.
 ```{"language":"csharp"}
 {
   "IsEncrypted": false,
@@ -74,3 +63,33 @@ Azure Function Config file:
   }
 }
 ```
+
+GenesysAtribute properies
+- Connection Optional. Azure storage account to use. Default connect AzureWebJobsStorage.
+- TokenTable Optional. Azure Table name, where tokens will be cached. Default table name GenesysTokens.
+- ClientId Optional. The App setting name that contains the Genesys ClientId value. Default name GenesysClientId.
+- ClientSecret Optional. The app setting name that contains the Genesys ClientSecret value. Default name - GenesysClientSecret.
+- Environment Optional. The app setting name that contains the Genesys Environment value. Default name GenesysEnvironment.
+
+Also you can specify your custom GenesysTokenProvider with GenesysAttributeCustomConfigProvider
+```{"language":"csharp"}
+using Genesys.Azure.WebJobs.Extensions;
+using Microsoft.Azure.WebJobs;
+using Microsoft.Azure.WebJobs.Hosting;
+using Microsoft.Extensions.DependencyInjection;
+
+[assembly: WebJobsStartup(typeof(SampleFunctionApp.Startup))]
+namespace SampleFunctionApp
+{
+    internal class Startup : IWebJobsStartup
+    {
+        public void Configure(IWebJobsBuilder builder)
+        {
+            builder.Services.AddSingleton<GenesysTokenProvider>();
+            builder.AddExtension<GenesysAttributeCustomConfigProvider>();
+        }
+    }
+}
+```
+
+
