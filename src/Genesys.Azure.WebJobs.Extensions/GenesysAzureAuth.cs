@@ -27,7 +27,7 @@ namespace Genesys.Azure.WebJobs.Extensions
                 }
                 catch (Exception ex)
                 {
-                    throw new GenesysExtensionsException($"Cant load AccessToken from the Azure CloudTable '{cloudTable.Name}'.", ex);
+                    throw new Exception($"Cant load AccessToken from the Azure CloudTable '{cloudTable.Name}'.", ex);
                 }
             }
             GenesysAuthTokenInfo authTokenInfo = null;
@@ -36,11 +36,11 @@ namespace Genesys.Azure.WebJobs.Extensions
      
             if (authTokenInfo == null)
             {
-                throw new GenesysExtensionsException($"Genesys API Token is null. ClientId '{clientCredentials.ClientId}'.");
+                throw new Exception($"Genesys API Token is null. ClientId '{clientCredentials.ClientId}'.");
             }
             else if (!string.IsNullOrEmpty(authTokenInfo.Error))
             {
-                throw new GenesysExtensionsException($"Genesys API Token error. ClientId '{clientCredentials.ClientId}'. {authTokenInfo.Error}.");
+                throw new Exception($"Genesys API Token error. ClientId '{clientCredentials.ClientId}'. {authTokenInfo.Error}.");
             }
 
             var newToken = new GenesysAccessToken(clientCredentials)

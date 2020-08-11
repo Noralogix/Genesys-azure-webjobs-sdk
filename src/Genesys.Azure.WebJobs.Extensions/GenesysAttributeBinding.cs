@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Genesys.Azure.WebJobs.Extensions
 {
-    public class GenesysAttributeBinding : IBinding
+    internal class GenesysAttributeBinding : IBinding
     {
         private const string AzureWebJobsStorage = "AzureWebJobsStorage";
         private const string AccessTokenTable = "GenesysAccessTokens";

@@ -1,7 +1,9 @@
 ﻿using Microsoft.Azure.Cosmos.Table;
 using Microsoft.Extensions.Configuration;
+using Newtonsoft.Json.Bson;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 
@@ -37,6 +39,19 @@ namespace Genesys.Azure.WebJobs.Extensions
             return Task.FromResult(credentials);
         }
 
+        public static string[] Environments = new string[] {
+            "mypurecloud.ie", "mypurecloud.com", "mypurecloud.de", "mypurecloud.jp",
+            "usw2.pure.cloud", "cac1.pure.cloud", "euw2.pure.cloud", "apne2.pure.cloud", "mypurecloud.com.au"
+        };
+
+        private void ValidateEnvironment(string environment)
+        {
+            if (string.IsNullOrEmpty(environment))
+                throw new ArgumentException("Environment is not defined.");
+            if (!Environments.Any(env => env.Equals(environment, StringComparison.OrdinalIgnoreCase)))
+                throw new ArgumentException("Wrong Environment.");
+        }
+
         public virtual async Task<IGenesysAccessToken> GetTokenAsync(DateTime date
             , GenesysTokenContext tokenContext
             , IReadOnlyDictionary<string, object> webjobBindingData)
@@ -44,13 +59,12 @@ namespace Genesys.Azure.WebJobs.Extensions
             var credentials = await GetClientCredentialsAsync(tokenContext);
 
             if (credentials == null)
-                throw new ArgumentNullException("Cant get Genesys Token with nullable client credentials.");
+                throw new ArgumentNullException("Cant get token with nullable client credentials.");
             if (string.IsNullOrEmpty(credentials.ClientId))
-                throw new ArgumentException("Genesys ClientId is not defined.");
+                throw new ArgumentException("ClientId is not defined.");
             if (string.IsNullOrEmpty(credentials.ClientSecret))
-                throw new ArgumentException("Genesys ClientSecret is not defined.");
-            if (string.IsNullOrEmpty(credentials.Environment))
-                throw new ArgumentException("Genesys Environment is not defined.");
+                throw new ArgumentException("ClientSecret is not defined.");
+            ValidateEnvironment(credentials.Environment);
 
             using (var client = new HttpClient())
             {

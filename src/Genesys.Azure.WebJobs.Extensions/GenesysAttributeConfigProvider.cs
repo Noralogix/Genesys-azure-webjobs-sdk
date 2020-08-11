@@ -10,7 +10,7 @@ namespace Genesys.Azure.WebJobs.Extensions
     [Extension("GenesysAzureStorageCustom", "Genesys")]
     public class GenesysAttributeCustomConfigProvider : IExtensionConfigProvider
     {
-        public readonly GenesysAttributeBindingProvider _bindingProvider;
+        private readonly GenesysAttributeBindingProvider _bindingProvider;
         public GenesysAttributeCustomConfigProvider(IConfiguration configuration, INameResolver resolver, GenesysTokenProvider tokenProvider) =>
             _bindingProvider = new GenesysAttributeBindingProvider(configuration, resolver, tokenProvider);
 
@@ -22,7 +22,7 @@ namespace Genesys.Azure.WebJobs.Extensions
     [Extension("GenesysAzureStorage", "Genesys")]
     public class GenesysAttributeConfigProvider : IExtensionConfigProvider
     {        
-        public readonly GenesysAttributeBindingProvider _bindingProvider;
+        private readonly GenesysAttributeBindingProvider _bindingProvider;
         public GenesysAttributeConfigProvider(IConfiguration configuration, INameResolver resolver) =>
             _bindingProvider = new GenesysAttributeBindingProvider(configuration, resolver, new GenesysTokenProvider(configuration));
 

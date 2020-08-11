@@ -37,11 +37,11 @@ namespace Genesys.Azure.WebJobs.Extensions
             catch (HttpRequestException ex)
             {
                 int statusCode = (int)response.StatusCode;
-                throw new GenesysExtensionsException($"Error calling Genesys API PostToken. Status Code {statusCode}. " + ex.Message);
+                throw new Exception($"Error calling Genesys API PostToken. Status Code {statusCode}.", ex);
             }
             catch (Exception ex)
             {
-                throw new GenesysExtensionsException($"GetTokenAsync error. " + ex.Message);
+                throw new Exception($"Get Genesys token error.", ex);
             }
         }
     }

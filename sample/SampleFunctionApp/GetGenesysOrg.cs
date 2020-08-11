@@ -36,7 +36,7 @@ namespace SampleFunctionApp
         [FunctionName("GetGenesysOrg2")]
         public static async Task<IActionResult> GetGenesysOrg2(
             [HttpTrigger(AuthorizationLevel.Function, "get", Route = "org2")] HttpRequest req
-            , [Genesys(ClientSecret = "ClientSecret", ClientId = "ClientId", Environment = "ClientId")] IGenesysAccessToken token
+            , [Genesys(ClientSecret = "ClientSecret", ClientId = "ClientId", Environment = "Environment")] IGenesysAccessToken token
             , ILogger log)
         {
             Organization org = await GetOrgAsync(token.Value, token.Environment);

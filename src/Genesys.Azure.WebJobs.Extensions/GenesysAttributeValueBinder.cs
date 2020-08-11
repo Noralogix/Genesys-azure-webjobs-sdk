@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Genesys.Azure.WebJobs.Extensions
 {
-    public class GenesysAttributeValueBinder : IValueBinder
+    internal class GenesysAttributeValueBinder : IValueBinder
     {
         public Type Type => throw new NotImplementedException();
 

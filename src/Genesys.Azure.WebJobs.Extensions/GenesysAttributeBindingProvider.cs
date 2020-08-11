@@ -11,7 +11,7 @@ using TableStorageAccount = Microsoft.Azure.Cosmos.Table.CloudStorageAccount;
 
 namespace Genesys.Azure.WebJobs.Extensions
 {
-    public class GenesysAttributeBindingProvider : IBindingProvider
+    internal class GenesysAttributeBindingProvider : IBindingProvider
     {
         private readonly IConfiguration _configuration;
         private readonly INameResolver _nameResolver;
