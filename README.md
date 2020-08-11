@@ -1,4 +1,8 @@
-# genesys-azure-webjobs-sdk
+---
+title: Genesys Azure Webjobs SDK - .NET
+---
+[![NuGet Badge](https://buildstats.info/nuget/Genesys.Azure.WebJobs.Extensions)](https://www.nuget.org/packages/Genesys.Azure.WebJobs.Extensions/)
+
 Framework that simplifies the task of writing code that runs in Azure.
 
 ```{"language":"csharp"}
