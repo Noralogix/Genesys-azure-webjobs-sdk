@@ -1,4 +1,4 @@
-[![NuGet Badge](https://buildstats.info/nuget/Genesys.Azure.WebJobs.Extensions)](https://www.nuget.org/packages/Genesys.Azure.WebJobs.Extensions/)
+# Genesys.Azure.WebJobs.Extensions .NET [![NuGet version](https://badge.fury.io/nu/Genesys.Azure.WebJobs.Extensions.svg)](https://www.nuget.org/packages/Genesys.Azure.WebJobs.Extensions) [![Nuget downloads](https://img.shields.io/nuget/dt/Genesys.Azure.WebJobs.Extensions)](https://www.nuget.org/packages/Genesys.Azure.WebJobs.Extensions)
 
 Framework that simplifies the task of writing code that runs in Azure.
 
