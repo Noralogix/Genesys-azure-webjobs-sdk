@@ -11,7 +11,7 @@
     <PackageId>Genesys.Azure.WebJobs.Extensions</PackageId>
     <PackageTags>Azure Genesys Purecloud AzureFunctions</PackageTags>
     
-    <Version>1.0.1</Version>
+    <Version>1.0.2</Version>
     <Authors>Noralogix</Authors>
     <Description>This library simplifies the task of creating Genesys Access Token for Genesys SDK in Azure Functions.</Description>
     <IsPackable>true</IsPackable>
