@@ -8,13 +8,15 @@ using Genesys.Azure.WebJobs.Extensions;
 using PureCloudPlatform.Client.V2.Client;
 using PureCloudPlatform.Client.V2.Api;
 using PureCloudPlatform.Client.V2.Model;
+using System.Net.Http;
 
 namespace SampleFunctionApp
 {
-    public static class GetGenesysOrg
-    {
+    public class GetGenesysOrg
+    { 
+
         [FunctionName("GetGenesysOrgByStringToken")]
-        public static async Task<IActionResult> RunString(
+        public async Task<IActionResult> RunString(
             [HttpTrigger(AuthorizationLevel.Function, "get", Route = "org-stringtoken")] HttpRequest req
             , [Genesys] string token
             , ILogger log)
@@ -24,7 +26,7 @@ namespace SampleFunctionApp
         }
 
         [FunctionName("GetGenesysOrg")]
-        public static async Task<IActionResult> Run(
+        public async Task<IActionResult> Run(
             [HttpTrigger(AuthorizationLevel.Function, "get", Route = "org")] HttpRequest req
             , [Genesys] IGenesysAccessToken token
             , ILogger log)
@@ -34,7 +36,7 @@ namespace SampleFunctionApp
         }
 
         [FunctionName("GetGenesysOrg2")]
-        public static async Task<IActionResult> GetGenesysOrg2(
+        public async Task<IActionResult> GetGenesysOrg2(
             [HttpTrigger(AuthorizationLevel.Function, "get", Route = "org2")] HttpRequest req
             , [Genesys(ClientSecret = "ClientSecret", ClientId = "ClientId", Environment = "Environment")] IGenesysAccessToken token
             , ILogger log)
@@ -43,7 +45,7 @@ namespace SampleFunctionApp
             return new OkObjectResult(org);
         }
 
-        private static async Task<Organization> GetOrgAsync(string token, string environment)
+        private async Task<Organization> GetOrgAsync(string token, string environment)
         {
             var apiClient = new ApiClient($"https://api.{environment}");
             var configuration = new Configuration(apiClient);
