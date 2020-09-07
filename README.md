@@ -1,4 +1,5 @@
-# genesys-azure-webjobs-sdk
+# Genesys.Azure.WebJobs.Extensions .NET [![NuGet version](https://badge.fury.io/nu/Genesys.Azure.WebJobs.Extensions.svg)](https://www.nuget.org/packages/Genesys.Azure.WebJobs.Extensions) [![Nuget downloads](https://img.shields.io/nuget/dt/Genesys.Azure.WebJobs.Extensions)](https://www.nuget.org/packages/Genesys.Azure.WebJobs.Extensions)
+
 Framework that simplifies the task of writing code that runs in Azure.
 
 ```{"language":"csharp"}
@@ -26,26 +27,6 @@ namespace SampleFunctionApp
             return new OkObjectResult(org);
         }
         ...
-    }
-}
-```
-
-Specify binding extension in the Azure Function Startup class
-```{"language":"csharp"}
-using Genesys.Azure.WebJobs.Extensions;
-using Microsoft.Azure.WebJobs;
-using Microsoft.Azure.WebJobs.Hosting;
-using Microsoft.Extensions.DependencyInjection;
-
-[assembly: WebJobsStartup(typeof(SampleFunctionApp.Startup))]
-namespace SampleFunctionApp
-{
-    internal class Startup : IWebJobsStartup
-    {
-        public void Configure(IWebJobsBuilder builder)
-        {
-            builder.AddExtension<GenesysAttributeConfigProvider>();
-        }
     }
 }
 ```
@@ -85,8 +66,7 @@ namespace SampleFunctionApp
     {
         public void Configure(IWebJobsBuilder builder)
         {
-            builder.Services.AddSingleton<GenesysTokenProvider>();
-            builder.AddExtension<GenesysAttributeCustomConfigProvider>();
+            builder.Services.AddSingleton<GenesysTokenProvider>();            
         }
     }
 }
