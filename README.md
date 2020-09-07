@@ -30,26 +30,6 @@ namespace SampleFunctionApp
     }
 }
 ```
-
-Specify binding extension in the Azure Function Startup class
-```{"language":"csharp"}
-using Genesys.Azure.WebJobs.Extensions;
-using Microsoft.Azure.WebJobs;
-using Microsoft.Azure.WebJobs.Hosting;
-using Microsoft.Extensions.DependencyInjection;
-
-[assembly: WebJobsStartup(typeof(SampleFunctionApp.Startup))]
-namespace SampleFunctionApp
-{
-    internal class Startup : IWebJobsStartup
-    {
-        public void Configure(IWebJobsBuilder builder)
-        {
-            builder.AddExtension<GenesysAttributeConfigProvider>();
-        }
-    }
-}
-```
 Azure Function Config file. GenesysOrgId For Azure Token Table partition key, otherwise partition key value will be empty string.
 ```{"language":"csharp"}
 {
@@ -86,8 +66,7 @@ namespace SampleFunctionApp
     {
         public void Configure(IWebJobsBuilder builder)
         {
-            builder.Services.AddSingleton<GenesysTokenProvider>();
-            builder.AddExtension<GenesysAttributeCustomConfigProvider>();
+            builder.Services.AddSingleton<GenesysTokenProvider>();            
         }
     }
 }
